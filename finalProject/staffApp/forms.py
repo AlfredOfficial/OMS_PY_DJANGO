@@ -14,4 +14,4 @@ class StaffProfileForm(forms.ModelForm):
 
     class Meta:
         model = staffProfile
-        exclude = ['user'] 
+        exclude = ['user', 'salary', 'bonus'] 

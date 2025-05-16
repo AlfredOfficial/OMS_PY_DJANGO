@@ -1,0 +1,22 @@
+body {
+    background-color: #f8f9fa;
+}
+.signup-card {
+    max-width: 750px;
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+h3, h4 {
+    color: #0d6efd;
+}
+.form-section {
+    margin-bottom: 25px;
+}
+.logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    max-height: 80px;
+}
