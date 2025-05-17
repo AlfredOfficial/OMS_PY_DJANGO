@@ -1,5 +1,6 @@
 body {
     background-color: #f8f9fa;
+    background: #e9ecef;
 }
 .signup-card {
     max-width: 750px;
@@ -20,3 +21,45 @@ h3, h4 {
     margin: 0 auto 20px auto;
     max-height: 80px;
 }
+/* .id-card {
+    max-width: 400px;
+    margin: auto;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    background: #fff;
+    padding: 2rem 1.5rem;
+    position: relative;
+}
+.id-header {
+    background: #0d6efd;
+    color: #fff;
+    border-radius: 1.5rem 1.5rem 0 0;
+    padding: 1.5rem 1rem 2.5rem 1rem;
+    text-align: center;
+    margin: -2rem -1.5rem 1.5rem -1.5rem;
+}
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    margin-top: -45px;
+    background: #fff;
+}
+.id-info th {
+    width: 40%;
+    color: #6c757d;
+    font-weight: 500;
+    text-align: right;
+    vertical-align: top;
+}
+.id-info td {
+    font-weight: 500;
+}
+.badge-role {
+    background: #198754;
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+} */
