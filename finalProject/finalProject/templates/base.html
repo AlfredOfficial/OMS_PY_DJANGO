@@ -22,7 +22,6 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle {% if request.path == '/about/' or request.path == '/contact/' %}active{% endif %}" 
            data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-            Information
         </a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
