@@ -33,3 +33,16 @@ class staffProfile(models.Model):
         return "%s %s %s %s %s %s %s" %(
             self.first_name, self.last_name, self.dept, self.role, self.email, self.address, self.city
         )
+    
+    # not yet done
+class Attendance(models.Model):
+    staff = models.ForeignKey(staffProfile, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    time_in = models.TimeField(null=True, blank=True)
+    time_out = models.TimeField(null=True, blank=True)
+
+    def __str__(self):
+        return "%s %s %s %s" %(
+            self.staff, self.date, self.time_in, self.time_out
+        )    
+

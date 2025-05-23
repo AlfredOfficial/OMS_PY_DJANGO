@@ -11,4 +11,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name = 'dashboard'),
     path('ajax/get-roles/', views.get_roles, name='get_roles'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('timein/', views.time_in, name='timein'),
+    path('timeout/', views.time_out, name='timeout'),
 ]

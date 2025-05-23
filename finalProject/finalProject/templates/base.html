@@ -14,18 +14,19 @@
     <li class="nav-item">
         <a class="nav-link {% if request.path == '/' or request.path == '/home/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
     </li>
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-    </li>
-
     <!-- Dropdown nav-item -->
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle {% if request.path == '/about/' or request.path == '/contact/' %}active{% endif %}" 
            data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            Info
         </a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
-            <li><a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a></li>
+            <li>
+                <a class="dropdown-item {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About</a>
+            </li>
+            <li>
+                <a class="dropdown-item {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact Us</a>
+            </li>
         </ul>
     </li>
 </ul>
