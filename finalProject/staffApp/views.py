@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import UserForm, StaffProfileForm
@@ -84,5 +85,5 @@ def time_out(request):
             attendance.time_out = timezone.now().time()
             attendance.save()
     except Attendance.DoesNotExist:
-        pass
+        messages.error(request, "You must Time In before you can Time Out.")
     return redirect('dashboard')
