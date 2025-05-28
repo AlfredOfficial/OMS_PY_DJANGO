@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load tz %}
 
 {% block title %}
     Dashboard
 {% endblock %}
 
 {% block content %}
-{% comment %} Adding message alert or message display {% endcomment %}
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -14,11 +14,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
-    {% endif %}    
+    {% endif %}
     <div class="container py-5">
         <div class="id-card">
             <div class="id-header">
-                {% comment %} <i class="bi bi-person-badge" style="font-size: 2.5rem;"></i> {% endcomment %}
                 <h3 class="mt-2 mb-0">{{ profile.first_name }} {{ profile.last_name }}</h3>
                 <div class="badge badge-role mt-2">{{ profile.role.name }}</div>
             </div>
@@ -26,7 +25,7 @@
                 {% if profile.image %}
                     <img src="{{ profile.image.url }}" alt="Profile Image" class="profile-avatar mb-3" style="width:120px; height:120px; object-fit:cover; border-radius:50%;">
                 {% else %}
-                    <img src="{% static 'images/default-avatar.png' %}" alt="Avatar" class="profile-avatar mb-3">
+                    <img src="{% static 'images/default-avatar.png' %}" alt="Avatar" class="profile-avatar mb-3" style="width:120px; height:120px; object-fit:cover; border-radius:50%;">
                 {% endif %}
             </div>
             <table class="table id-info table-borderless mb-0">
@@ -59,31 +58,36 @@
             </table>
 
             <!-- Attendance Table -->
-            <h5 class="mt-4">Recent Attendance</h5>
+            <h5 class="mt-4 mb-3 text-primary">Recent Attendance</h5>
             <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Time In</th>
-                    <th>Time Out</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for att in attendance_list %}
-                <tr>
-                    <td>{{ att.date }}</td>
-                    <td>{{ att.time_in|default:"--" }}</td>
-                    <td>{{ att.time_out|default:"--" }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="3" class="text-center">No attendance records found.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time In</th>
+                        <th>Time Out</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for att in attendance_list %}
+                    <tr>
+                        <td>{{ att.date }}</td>
+                        <td>
+                            {{ att.time_in|localtime|default:"--" }}
+                            {% if att.is_late %}
+                                <span class="badge bg-danger ms-2">Late</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ att.time_out|localtime|default:"--" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">No attendance records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
 
-            {% comment %} Add time in/out buttons {% endcomment %}
+            <!-- Time In/Out Buttons -->
             <div class="text-center mt-4">
                 <form method="post" action="{% url 'timein' %}" style="display:inline;">
                     {% csrf_token %}
@@ -95,6 +99,7 @@
                 </form>
             </div>
 
+            <!-- Logout Button -->
             <div class="text-center mt-4">
                 <form method="post" action="{% url 'logout' %}" style="display:inline;">
                     {% csrf_token %}

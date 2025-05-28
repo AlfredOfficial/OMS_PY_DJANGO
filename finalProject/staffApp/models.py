@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 class Department(models.Model):
     name = models.CharField(max_length=100, null = False)
@@ -45,5 +46,10 @@ class Attendance(models.Model):
     def __str__(self):
         return "%s %s %s %s" %(
             self.staff, self.date, self.time_in, self.time_out
-        )    
+        )
+
+    def is_late(self):
+        if self.time_in and self.time_in > datetime.time(8, 0):
+            return True
+        return False    
 

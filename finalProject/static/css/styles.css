@@ -21,45 +21,111 @@ h3, h4 {
     margin: 0 auto 20px auto;
     max-height: 80px;
 }
-/* .id-card {
-    max-width: 400px;
-    margin: auto;
-    border-radius: 1.5rem;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-    background: #fff;
-    padding: 2rem 1.5rem;
-    position: relative;
+
+/* --- Navbar Custom Styles --- */
+.navbar {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
 }
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    color: #ffc107 !important;
+}
+.nav-link {
+    font-size: 1.1rem;
+    margin-right: 10px;
+    transition: color 0.2s;
+}
+.nav-link.active, .nav-link:focus, .nav-link:hover {
+    color: #ffc107 !important;
+}
+.btn-login {
+    color: #fff !important;
+    background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 24px;
+    margin-left: 10px;
+    transition: background 0.3s;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+}
+.btn-login:hover {
+    background: linear-gradient(90deg, #0056b3 60%, #00aaff 100%);
+    color: #fff !important;
+}
+.dropdown-menu {
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.id-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    padding: 2.5rem 2rem 2rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .id-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+    border: 4px solid #0d6efd;
+    box-shadow: 0 2px 12px rgba(13,110,253,0.10);
+    margin-bottom: 1rem;
+}
+
+.badge-role {
+    background: linear-gradient(90deg, #0d6efd 60%, #00c6ff 100%);
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5em 1.2em;
+    border-radius: 20px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.table-bordered th, .table-bordered td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table thead th {
     background: #0d6efd;
     color: #fff;
-    border-radius: 1.5rem 1.5rem 0 0;
-    padding: 1.5rem 1rem 2.5rem 1rem;
-    text-align: center;
-    margin: -2rem -1.5rem 1.5rem -1.5rem;
+    border: none;
 }
-.profile-avatar {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    margin-top: -45px;
-    background: #fff;
+
+.table-bordered {
+    border-radius: 12px;
+    overflow: hidden;
 }
-.id-info th {
-    width: 40%;
-    color: #6c757d;
-    font-weight: 500;
-    text-align: right;
-    vertical-align: top;
-}
-.id-info td {
-    font-weight: 500;
-}
-.badge-role {
-    background: #198754;
+
+.btn-success.btn-sm, .btn-warning.btn-sm, .btn-outline-danger.btn-sm {
     font-size: 1rem;
-    padding: 0.5em 1em;
-    border-radius: 1em;
-} */
+    padding: 0.5em 1.5em;
+    border-radius: 20px;
+    margin: 0 0.5em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    font-weight: 500;
+}
+
+.badge.bg-danger {
+    font-size: 0.9em;
+    padding: 0.4em 1em;
+    border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+    .id-card {
+        padding: 1rem 0.5rem;
+    }
+    .table {
+        font-size: 0.95rem;
+    }
+}
