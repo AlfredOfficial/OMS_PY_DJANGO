@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import localtime
 import datetime
 
 class Department(models.Model):
@@ -29,6 +30,7 @@ class staffProfile(models.Model):
     email = models.EmailField(max_length=100, null = False)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
+    is_approved = models.BooleanField(default=False) # for admin approval
     image = models.ImageField(upload_to='profile_images/', default='profile_images/default.jpg', null=True, blank=True)
 
     def __str__(self):
@@ -40,8 +42,8 @@ class staffProfile(models.Model):
 class Attendance(models.Model):
     staff = models.ForeignKey(staffProfile, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-    time_in = models.TimeField(null=True, blank=True)
-    time_out = models.TimeField(null=True, blank=True)
+    time_in = models.DateTimeField(null=True, blank=True)
+    time_out = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return "%s %s %s %s" %(
@@ -49,7 +51,10 @@ class Attendance(models.Model):
         )
 
     def is_late(self):
-        if self.time_in and self.time_in > datetime.time(8, 0):
-            return True
+        if self.time_in:
+            local_time = localtime(self.time_in).time()
+            return local_time > datetime.time(8, 0)
+        # if self.time_in and self.time_in.time() > datetime.time(8, 0):
+        #     return True
         return False    
 

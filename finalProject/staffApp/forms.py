@@ -15,7 +15,7 @@ class StaffProfileForm(forms.ModelForm):
 
     class Meta:
         model = staffProfile
-        exclude = ['user', 'salary', 'bonus'] 
+        exclude = ['user', 'salary', 'bonus', 'email', 'is_approved'] 
 
 class AttendanceForm(forms.ModelForm):
     class Meta:
@@ -30,10 +30,15 @@ class AttendanceForm(forms.ModelForm):
         min_time_in = datetime.time(8, 0)
         min_time_out = datetime.time(16, 0)
 
-        if time_in and time_in < min_time_in:
+        if time_in and time_in.time() < min_time_in:
             raise forms.ValidationError("You can only time in at or after 8:00 AM.")
 
-        if time_out and time_out < min_time_out:
+        if time_out and time_out.time() < min_time_out:
             raise forms.ValidationError("You can only time out at or after 4:00 PM.")
 
         return cleaned_data
+
+
+
+# wala pa na fix ang late fo time in okkkkk
+#still figuring out how to do it

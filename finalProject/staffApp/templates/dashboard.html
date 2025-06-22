@@ -7,105 +7,162 @@
 {% endblock %}
 
 {% block content %}
-    {% if messages %}
+    {% comment %} {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                 {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
-    {% endif %}
-    <div class="container py-5">
-        <div class="id-card">
-            <div class="id-header">
-                <h3 class="mt-2 mb-0">{{ profile.first_name }} {{ profile.last_name }}</h3>
-                <div class="badge badge-role mt-2">{{ profile.role.name }}</div>
-            </div>
-            <div class="text-center">
-                {% if profile.image %}
-                    <img src="{{ profile.image.url }}" alt="Profile Image" class="profile-avatar mb-3" style="width:120px; height:120px; object-fit:cover; border-radius:50%;">
-                {% else %}
-                    <img src="{% static 'images/default-avatar.png' %}" alt="Avatar" class="profile-avatar mb-3" style="width:120px; height:120px; object-fit:cover; border-radius:50%;">
-                {% endif %}
-            </div>
-            <table class="table id-info table-borderless mb-0">
-                <tbody>
-                    <tr>
-                        <th>Email:</th>
-                        <td>{{ profile.email }}</td>
-                    </tr>
-                    <tr>
-                        <th>Department:</th>
-                        <td>{{ profile.dept.name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Phone:</th>
-                        <td>{{ profile.phone }}</td>
-                    </tr>
-                    <tr>
-                        <th>Hire Date:</th>
-                        <td>{{ profile.hire_date }}</td>
-                    </tr>
-                    <tr>
-                        <th>Address:</th>
-                        <td>{{ profile.address }}</td>
-                    </tr>
-                    <tr>
-                        <th>City:</th>
-                        <td>{{ profile.city }}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- Attendance Table -->
-            <h5 class="mt-4 mb-3 text-primary">Recent Attendance</h5>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time In</th>
-                        <th>Time Out</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for att in attendance_list %}
-                    <tr>
-                        <td>{{ att.date }}</td>
-                        <td>
-                            {{ att.time_in|localtime|default:"--" }}
-                            {% if att.is_late %}
-                                <span class="badge bg-danger ms-2">Late</span>
-                            {% endif %}
-                        </td>
-                        <td>{{ att.time_out|localtime|default:"--" }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="3" class="text-center">No attendance records found.</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-            <!-- Time In/Out Buttons -->
-            <div class="text-center mt-4">
-                <form method="post" action="{% url 'timein' %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success btn-sm">Time In</button>
-                </form>
-                <form method="post" action="{% url 'timeout' %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-warning btn-sm">Time Out</button>
-                </form>
-            </div>
-
-            <!-- Logout Button -->
-            <div class="text-center mt-4">
-                <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
-                </form>
-            </div>
+    {% endif %} {% endcomment %}
+    <div class="container-fluid py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar shadow-sm rounded p-0">
+                <div class="position-sticky pt-3">
+                    <div class="text-center my-4">
+                        {% if profile.image %}
+                            <img src="{{ profile.image.url }}" alt="Profile Image" class="profile-avatar mb-2" style="width:90px; height:90px; object-fit:cover; border-radius:50%;">
+                        {% else %}
+                            <img src="{% static 'images/default-avatar.png' %}" alt="Avatar" class="profile-avatar mb-2" style="width:90px; height:90px; object-fit:cover; border-radius:50%;">
+                        {% endif %}
+                        <h5 class="mt-2 mb-0">{{ profile.first_name }} {{ profile.last_name }}</h5>
+                        <div class="badge badge-role mt-2">{{ profile.role.name }}</div>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#personal-info">
+                                <i class="bi bi-person"></i> Personal Info
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#attendance">
+                                <i class="bi bi-clock-history"></i> Attendance
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger w-100">
+                                    <i class="bi bi-box-arrow-right"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <section id="personal-info" class="mt-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Personal Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th>Email:</th>
+                                        <td>{{ profile.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Department:</th>
+                                        <td>{{ profile.dept.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone:</th>
+                                        <td>{{ profile.phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Hire Date:</th>
+                                        <td>{{ profile.hire_date }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address:</th>
+                                        <td>{{ profile.address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>City:</th>
+                                        <td>{{ profile.city }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section id="attendance" class="mt-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Recent Attendance</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Time In</th>
+                                        <th>Time Out</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for att in attendance_list %}
+                                    <tr>
+                                        <td>{{ att.date }}</td>
+                                        <td>
+                                            {% if att.time_in %}
+                                                {{ att.time_in|localtime|date:"h:i A" }}
+                                            {% else %}
+                                                --
+                                            {% endif %}
+                                            {% if att.is_late %}
+                                                <span class="badge bg-danger ms-2">Late</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if att.time_out %}
+                                                {{ att.time_out|localtime|date:"h:i A" }}
+                                            {% else %}
+                                                --
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="3" class="text-center">No attendance records found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <div class="text-center mt-4">
+                                <form method="post" action="{% url 'timein' %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success btn-sm">Time In</button>
+                                </form>
+                                <form method="post" action="{% url 'timeout' %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-warning btn-sm">Time Out</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
     </div>
 {% endblock %}
+
+{% comment %} {% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% else %}info{% endif %}",
+                        title: "{{ message.tags|capfirst }}",
+                        text: "{{ message|escapejs}}",
+                });
+                {% endfor %}
+        {% endif %}
+    });
+</script>
+{% endblock %} {% endcomment %}

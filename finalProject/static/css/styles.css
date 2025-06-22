@@ -121,6 +121,12 @@ h3, h4 {
     border-radius: 12px;
 }
 
+.staff-title {
+    font-family: 'Edu NSW ACT Hand Pre', cursive;
+    font-size: 1.5rem; /* Optional: adjust as you like */
+    letter-spacing: 1px; /* Optional: adds spacing for style */
+}
+
 @media (max-width: 600px) {
     .id-card {
         padding: 1rem 0.5rem;

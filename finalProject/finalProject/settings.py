@@ -32,13 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'staffApp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'staffApp',
     'widget_tweaks',  # for custom template tags
 ]
 
@@ -135,7 +135,7 @@ LOGOUT_REDIRECT_URL = '/login/'  # where to go after logout
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # For development, prints emails to console
 EMAIL_HOST = 'smtp.gmail.com'  # Replace with your email provider's SMTP server
-EMAIL_PORT = '587'
-EMAIL_USE_TLS = 'True'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'orapaalfred7@gmail.com'
 EMAIL_HOST_PASSWORD = 'nepo fqml nihe lqst'
