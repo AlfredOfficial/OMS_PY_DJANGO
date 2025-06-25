@@ -6,7 +6,60 @@
     Home
 {% endblock %}
 {% block content %}
-    <div class="container py-5 text-center">
-        <h2>Welcome to the Staff Management System</h2>
-    </div> 
+<!-- Hero Section -->
+<section class="text-center py-5 bg-light">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Welcome to Santos College Staff Management System</h1>
+    <p class="lead mt-3 mb-4">Simplify staff attendance and management.</p>
+    {% comment %} <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Get Started</a> {% endcomment %}
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-4">About</h2>
+    <p class="text-center">
+      Our system streamlines attendance tracking, leave management, and payroll processing 
+      for academic and business institutions.
+    </p>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5">Features</h2>
+    <div class="row text-center">
+      <div class="col-md-3">
+        <div class="mb-3">
+          <i class="bi bi-clock-history display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Attendance Tracking</h5>
+        <p>Monitor staff hours with ease.</p>
+      </div>
+      <div class="col-md-3">
+        <div class="mb-3">
+          <i class="bi bi-calendar-check display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Leave Management</h5>
+        <p>Manage time-off requests efficiently.</p>
+      </div>
+      <div class="col-md-3">
+        <div class="mb-3">
+          <i class="bi bi-currency-dollar display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Payroll Overview</h5>
+        <p>Simplify payroll with integrated tools.</p>
+      </div>
+      <div class="col-md-3">
+        <div class="mb-3">
+          <i class="bi bi-people-fill display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Department & Staff Profiles</h5>
+        <p>Organize staff information and departments.</p>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
