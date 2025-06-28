@@ -28,7 +28,7 @@ def signup_view(request):
 
             messages.success(request, 'Account created successfully! Please wait for Admin approval.')
             # return redirect('login')  # after signup
-            return render(request,'signup.html', {
+            return render(request,'staffApp/signup.html', {
                 'user_form': UserForm(),
                 'profile_form': StaffProfileForm(),
                 'departments': Department.objects.all(),
@@ -39,7 +39,7 @@ def signup_view(request):
     # Fetch all departments for the dropdown
     departments = Department.objects.all()    
 
-    return render(request, 'signup.html', {
+    return render(request, 'staffApp/signup.html', {
         'user_form': user_form,
         'profile_form': profile_form,
         'departments': departments,
@@ -58,25 +58,25 @@ def login_view(request):
             try:
                 profile = staffProfile.objects.get(user=user)
                 if not profile.is_approved:
-                    return render(request, 'registration/login.html', {
+                    return render(request, 'staffApp/registration/login.html', {
                         'form': form,
                         'error': 'Your account is pending for admin approval.'
                     })
             except staffProfile.DoesNotExist:
-                return render(request, 'registration/login.html', {
+                return render(request, 'staffApp/registration/login.html', {
                     'form': form,
                     'error': 'Profile not found.'
                 })
             login(request, user)
             return redirect('dashboard')
         else:
-            return render(request, 'registration/login.html', {
+            return render(request, 'staffApp/registration/login.html', {
                 'form': form,
                 'error': 'Invalid username or password.'
             })
     else:
         form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'staffApp/registration/login.html', {'form': form})
     # if request.method == 'POST':
     #     username = request.POST.get('username')
     #     password = request.POST.get('password')
@@ -100,7 +100,7 @@ def login_view(request):
 def dashboard(request):
     profile = staffProfile.objects.get(user=request.user)
     attendance_list = Attendance.objects.filter(staff=profile).order_by('-date')[:10]
-    return render(request, 'dashboard.html', {
+    return render(request, 'staffApp/dashboard.html', {
         'profile': profile,
         'attendance_list': attendance_list,
     })

@@ -6,8 +6,54 @@
     About
 {% endblock %}
 {% block content %}
-    <div class="container py-5 text-center">
-        <h1>Welcome to the About Page</h1>
-        <p>This is a simple Django application.</p>
+
+<section class="py-5 bg-white min-vh-100">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5" data-aos="fade-down">About the System</h2>
+    <p class="text-center mb-5 px-md-5" data-aos="fade-up">
+      The Santos College Staff Management System is built to simplify daily administrative tasks — 
+      from tracking attendance and managing leave requests to organizing staff profiles and payroll. 
+      Designed for educational institutions, it helps streamline HR processes with ease, efficiency, and reliability.
+    </p>
+
+    <h3 class="fw-bold text-center mb-4" data-aos="fade-down">Key Features</h3>
+    <div class="row text-center">
+      <div class="col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="mb-3">
+          <i class="bi bi-clock-history display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Attendance Tracking</h5>
+        <p>Monitor staff hours with ease.</p>
+      </div>
+      <div class="col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="mb-3">
+          <i class="bi bi-calendar-check display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Leave Management</h5>
+        <p>Manage time-off requests efficiently.</p>
+      </div>
+      <div class="col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="mb-3">
+          <i class="bi bi-currency-dollar display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Payroll Overview</h5>
+        <p>Simplify payroll with integrated tools.</p>
+      </div>
+      <div class="col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="400">
+        <div class="mb-3">
+          <i class="bi bi-people-fill display-4 text-primary"></i>
+        </div>
+        <h5 class="fw-bold">Department & Staff Profiles</h5>
+        <p>Organize staff information and departments.</p>
+      </div>
     </div>
+
+    <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="500">
+      <p class="text-muted small">
+        Developed by Information Systems students of Santos College — a practical project that transforms HR tasks into a smart solution.
+      </p>
+    </div>
+  </div>
+</section>
+
 {% endblock %}

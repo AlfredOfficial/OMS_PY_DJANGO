@@ -1,0 +1,37 @@
+<footer class="bg-dark text-light py-4 mt-auto">
+  <div class="container">
+    <div class="row text-center text-md-start">
+      
+      <!-- Column 1: Logo / System Info -->
+      <div class="col-md-4 mb-3 mb-md-0">
+        <h5 class="fw-bold">Santos College</h5>
+        <p class="small">Staff Management System</p>
+        <p class="small mb-0">Empowering staff, streamlining attendance.</p>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="col-md-4 mb-3 mb-md-0">
+        <h6>Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'home' %}" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="{% url 'login' %}" class="text-light text-decoration-none">Login</a></li>
+          <li><a href="{% url 'about' %}" class="text-light text-decoration-none">About</a></li>
+          <li><a href="{% url 'contact' %}" class="text-light text-decoration-none">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact Info -->
+      <div class="col-md-4">
+        <h6>Contact</h6>
+        <p class="small mb-1"><i class="bi bi-envelope"></i> info@santoscollege.edu.ph</p>
+        <p class="small mb-0"><i class="bi bi-geo-alt"></i> Danao, Bohol, Philippines</p>
+      </div>
+    </div>
+
+    <hr class="border-light my-3">
+
+    <div class="text-center small">
+      &copy; {% now "Y" %} Santos College. All rights reserved.
+    </div>
+  </div>
+</footer>

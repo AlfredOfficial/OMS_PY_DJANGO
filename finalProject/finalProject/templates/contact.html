@@ -1,15 +1,48 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block title %}
     Contact Us
 {% endblock %}
+
 {% block content %}
-    <div class="container py-5 text-center">
-        <h1>Contact Us</h1>
-        <p>If you have any questions, feel free to reach out!</p>
-        <h1>Welcome to the Contact Page</h1>
-        <p>This is a simple Django application.</p>
+<section class="py-5 bg-white min-vh-100">
+  <div class="container">
+    <!-- Title -->
+    <h2 class="fw-bold text-center mb-4">Contact Us</h2>
+    <p class="text-center text-muted mb-5 px-md-5">
+      Have a question or need help? We're here to assist you. Feel free to reach out using the details below.
+    </p>
+
+    <!-- Contact Details -->
+    <div class="row justify-content-center text-center gy-4">
+      <!-- Address -->
+      <div class="col-md-4">
+        <i class="bi bi-geo-alt-fill display-5 text-primary mb-2"></i>
+        <h5 class="fw-bold">Campus Address</h5>
+        <p class="text-muted small mb-0">Santos College, Francisco Dagohoy Memorial Shrine,</p>
+        <p class="text-muted small">Danao, Bohol, Philippines</p>
+      </div>
+
+      <!-- Email -->
+      <div class="col-md-4">
+        <i class="bi bi-envelope-fill display-5 text-success mb-2"></i>
+        <h5 class="fw-bold">Email</h5>
+        <p class="text-muted small">info@santoscollege.edu.ph</p>
+      </div>
+
+      <!-- Phone -->
+      <div class="col-md-4">
+        <i class="bi bi-telephone-fill display-5 text-warning mb-2"></i>
+        <h5 class="fw-bold">Phone</h5>
+        <p class="text-muted small">(+63) 912-345-6789</p>
+      </div>
     </div>
+
+    <!-- Optional Message -->
+    <div class="text-center mt-5">
+      <p class="text-muted small fst-italic">We typically respond within 24 hours during business days.</p>
+    </div>
+  </div>
+</section>
 {% endblock %}

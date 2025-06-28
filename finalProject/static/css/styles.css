@@ -25,7 +25,8 @@ h3, h4 {
 /* --- Navbar Custom Styles --- */
 .navbar {
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    /* box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: linear-gradient(90deg, #232526 0%, #414345 100%); */
 }
 .navbar-brand {
     font-weight: bold;
@@ -122,7 +123,7 @@ h3, h4 {
 }
 
 .staff-title {
-    font-family: 'Edu NSW ACT Hand Pre', cursive;
+    font-family: 'Fira Code', Arial, sans-serif;
     font-size: 1.5rem; /* Optional: adjust as you like */
     letter-spacing: 1px; /* Optional: adds spacing for style */
 }
