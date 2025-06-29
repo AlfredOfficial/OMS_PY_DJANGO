@@ -139,3 +139,16 @@ def time_out(request):
     except Attendance.DoesNotExist:
         messages.error(request, "You must Time In before you can Time Out.")
     return redirect('dashboard')
+
+@login_required
+def edit_profile(request):
+    profile = staffProfile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = StaffProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = StaffProfileForm(instance=profile)
+
+    return render(request, 'staffApp/edit_profile.html', {'form': form})

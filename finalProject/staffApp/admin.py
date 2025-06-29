@@ -41,5 +41,10 @@ class AttendanceAdmin(admin.ModelAdmin):
 
 admin.site.register(staffProfile, StaffProfileAdmin)
 admin.site.register(Department, DepartmentAdmin)
-admin.site.register(Role)
+admin.site.register(Role, RoleAdmin)
 admin.site.register(Attendance, AttendanceAdmin)
+
+admin.site.site_header = "Santos College Staff Management"
+admin.site.site_title = "Santos College Admin Portal"
+admin.site.index_title = "Welcome to Santos College Administration"
+

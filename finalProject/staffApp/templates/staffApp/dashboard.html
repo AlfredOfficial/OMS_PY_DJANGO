@@ -7,162 +7,156 @@
 {% endblock %}
 
 {% block content %}
-    {% comment %} {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    {% endif %} {% endcomment %}
-    <div class="container-fluid py-5">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar shadow-sm rounded p-0">
-                <div class="position-sticky pt-3">
-                    <div class="text-center my-4">
-                        {% if profile.image %}
-                            <img src="{{ profile.image.url }}" alt="Profile Image" class="profile-avatar mb-2" style="width:90px; height:90px; object-fit:cover; border-radius:50%;">
-                        {% else %}
-                            <img src="{% static 'images/default-avatar.png' %}" alt="Avatar" class="profile-avatar mb-2" style="width:90px; height:90px; object-fit:cover; border-radius:50%;">
-                        {% endif %}
-                        <h5 class="mt-2 mb-0">{{ profile.first_name }} {{ profile.last_name }}</h5>
-                        <div class="badge badge-role mt-2">{{ profile.role.name }}</div>
-                    </div>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#personal-info">
-                                <i class="bi bi-person"></i> Personal Info
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#attendance">
-                                <i class="bi bi-clock-history"></i> Attendance
-                            </a>
-                        </li>
-                        <li class="nav-item mt-3">
-                            <form method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger w-100">
-                                    <i class="bi bi-box-arrow-right"></i> Logout
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
+<div class="container-fluid py-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block bg-white border-end shadow-sm sidebar p-0 rounded">
+            <div class="position-sticky pt-3 px-3">
+                <div class="text-center my-4">
+                    {% if profile.image %}
+                        <img src="{{ profile.image.url }}" alt="Profile Image" class="img-fluid mb-2" style="width:90px; height:90px; object-fit:cover; border-radius:50%;">
+                    {% else %}
+                        <img src="{% static 'images/default-avatar.png' %}" alt="Avatar" class="img-fluid mb-2" style="width:90px; height:90px; object-fit:cover; border-radius:50%;">
+                    {% endif %}
+                    <h5 class="mt-2 mb-0 fw-semibold">{{ profile.first_name }} {{ profile.last_name }}</h5>
+                    <div class="badge bg-secondary mt-2 text-capitalize">{{ profile.role.name }}</div>
                 </div>
-            </nav>
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <section id="personal-info" class="mt-4">
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">Personal Information</h5>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-borderless mb-0">
-                                <tbody>
-                                    <tr>
-                                        <th>Email:</th>
-                                        <td>{{ profile.email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Department:</th>
-                                        <td>{{ profile.dept.name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Phone:</th>
-                                        <td>{{ profile.phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Hire Date:</th>
-                                        <td>{{ profile.hire_date }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Address:</th>
-                                        <td>{{ profile.address }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>City:</th>
-                                        <td>{{ profile.city }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                <!-- Navigation -->
+                <ul class="nav flex-column mb-4">
+                    <li class="nav-item mb-1">
+                        <!-- Modal Trigger -->
+                        <a class="nav-link text-dark d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#personalInfoModal" href="#">
+                            <i class="bi bi-person me-2 text-primary"></i> Personal Info
+                        </a>
+                    </li>
+                    <li class="nav-item mb-1">
+                        <a class="nav-link text-dark d-flex align-items-center" href="#attendance">
+                            <i class="bi bi-clock-history me-2 text-success"></i> Attendance
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Logout -->
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
+                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                    </button>
+                </form>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <!-- Attendance Section -->
+            <section id="attendance" class="mt-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white d-flex align-items-center">
+                        <i class="bi bi-clock-history me-2"></i>
+                        <h5 class="mb-0">Recent Attendance</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time In</th>
+                                    <th>Time Out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for att in attendance_list %}
+                                <tr>
+                                    <td>{{ att.date }}</td>
+                                    <td>
+                                        {% if att.time_in %}
+                                            {{ att.time_in|localtime|date:"h:i A" }}
+                                        {% else %}
+                                            <span class="text-muted">--</span>
+                                        {% endif %}
+                                        {% if att.is_late %}
+                                            <span class="badge bg-danger ms-2">Late</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if att.time_out %}
+                                            {{ att.time_out|localtime|date:"h:i A" }}
+                                        {% else %}
+                                            <span class="text-muted">--</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted">No attendance records found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <div class="text-center mt-4">
+                            <form method="post" action="{% url 'timein' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success btn-sm px-4">Time In</button>
+                            </form>
+                            <form method="post" action="{% url 'timeout' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-warning btn-sm px-4">Time Out</button>
+                            </form>
                         </div>
                     </div>
-                </section>
-                <section id="attendance" class="mt-4">
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">Recent Attendance</h5>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Time In</th>
-                                        <th>Time Out</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for att in attendance_list %}
-                                    <tr>
-                                        <td>{{ att.date }}</td>
-                                        <td>
-                                            {% if att.time_in %}
-                                                {{ att.time_in|localtime|date:"h:i A" }}
-                                            {% else %}
-                                                --
-                                            {% endif %}
-                                            {% if att.is_late %}
-                                                <span class="badge bg-danger ms-2">Late</span>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if att.time_out %}
-                                                {{ att.time_out|localtime|date:"h:i A" }}
-                                            {% else %}
-                                                --
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    {% empty %}
-                                    <tr>
-                                        <td colspan="3" class="text-center">No attendance records found.</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            <div class="text-center mt-4">
-                                <form method="post" action="{% url 'timein' %}" style="display:inline;">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success btn-sm">Time In</button>
-                                </form>
-                                <form method="post" action="{% url 'timeout' %}" style="display:inline;">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-warning btn-sm">Time Out</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Personal Info Modal -->
+<div class="modal fade" id="personalInfoModal" tabindex="-1" aria-labelledby="personalInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="personalInfoModalLabel"><i class="bi bi-person me-2"></i>Personal Information</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-muted">Email:</th>
+                            <td>{{ profile.email }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-muted">Department:</th>
+                            <td>{{ profile.dept.name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-muted">Phone:</th>
+                            <td>{{ profile.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-muted">Hire Date:</th>
+                            <td>{{ profile.hire_date }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-muted">Address:</th>
+                            <td>{{ profile.address }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-muted">City:</th>
+                            <td>{{ profile.city }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-between px-4">
+                <small class="text-muted">Last updated: {{ profile.updated_at|date:"F j, Y" }}</small>
+                <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-pencil-square me-1"></i> Edit Info
+                </a>
+            </div>
         </div>
     </div>
+</div>
 {% endblock %}
-
-{% comment %} {% block extra_scripts %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        {% if messages %}
-                {% for message in messages %}
-                    Swal.fire({
-                        icon: "{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% else %}info{% endif %}",
-                        title: "{{ message.tags|capfirst }}",
-                        text: "{{ message|escapejs}}",
-                });
-                {% endfor %}
-        {% endif %}
-    });
-</script>
-{% endblock %} {% endcomment %}
