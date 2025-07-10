@@ -1,6 +1,6 @@
 from django import forms 
 from django.contrib.auth.models import User
-from .models import staffProfile, Attendance
+from .models import staffProfile, Attendance, Leave
 import datetime
 
 class UserForm(forms.ModelForm):
@@ -38,7 +38,16 @@ class AttendanceForm(forms.ModelForm):
 
         return cleaned_data
 
-
+class LeaveForm(forms.ModelForm):
+    class Meta:
+        model = Leave
+        fields = ['leave_type', 'start_date', 'end_date', 'reason']
+        widgets = {
+            'leave_type': forms.Select(attrs={'class': 'form-control'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'reason': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+        }
 
 # wala pa na fix ang late fo time in okkkkk
 #still figuring out how to do it

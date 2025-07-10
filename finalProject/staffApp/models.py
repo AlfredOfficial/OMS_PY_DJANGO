@@ -56,5 +56,28 @@ class Attendance(models.Model):
             return local_time > datetime.time(8, 0)
         # if self.time_in and self.time_in.time() > datetime.time(8, 0):
         #     return True
-        return False    
+        return False        
 
+class Leave(models.Model):
+    LEAVE_TYPE_CHOICES = [
+        ('SICK', 'Sick Leave'),
+        ('VACATION', 'Vacation Leave'),
+        ('EMERGENCY', 'Emergency Leave'),
+        ('OTHERS', 'Others'),
+    ]
+    STATUS_CHOICES = [
+        ('PENDING', 'Pending'),
+        ('APPROVED', 'Approved'),
+        ('REJECTED', 'Rejected'),
+    ]
+
+    staff = models.ForeignKey(staffProfile, on_delete=models.CASCADE)
+    leave_type = models.CharField(max_length=20, choices=LEAVE_TYPE_CHOICES)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    reason = models.TextField(blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
+    applied_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.staff} - {self.leave_type} ({self.start_date} to {self.end_date})"

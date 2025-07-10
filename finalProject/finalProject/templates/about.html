@@ -30,14 +30,14 @@
           <i class="bi bi-calendar-check display-4 text-primary"></i>
         </div>
         <h5 class="fw-bold">Leave Management</h5>
-        <p>Manage time-off requests efficiently.</p>
+        <p>Manage leave requests efficiently.</p>
       </div>
       <div class="col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
         <div class="mb-3">
           <i class="bi bi-currency-dollar display-4 text-primary"></i>
         </div>
         <h5 class="fw-bold">Payroll Overview</h5>
-        <p>Simplify payroll with integrated tools.</p>
+        <p>Ongoing development.</p>
       </div>
       <div class="col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="400">
         <div class="mb-3">
@@ -47,13 +47,140 @@
         <p>Organize staff information and departments.</p>
       </div>
     </div>
+</div>
+</section>
 
-    <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="500">
+<section class="py-5 bg-light min-vh-100">
+  <div class="container">
+    <h3 class="fw-bold text-center mt-5 mb-4" data-aos="fade-down">Meet the Team</h3>
+    <div class="row justify-content-center text-center">
+
+      <!-- Team Member -->
+      <div class="col-sm-6 col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card border-0 shadow-sm h-100">
+          <img src="{% static 'images/team1.jpg' %}" class="image-photo hover-zoom" data-bs-toggle="modal" data-bs-target="#team1Modal" alt="Alfred Orapa">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Alfred Orapa</h5>
+            <p class="card-text text-muted">Team Leader</p>
+            <div>
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat for other members -->
+      <div class="col-sm-6 col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card border-0 shadow-sm h-100">
+          <img src="{% static 'images/team2.jpg' %}" class="image-photo hover-zoom" data-bs-toggle="modal" data-bs-target="#team2Modal" alt="Rico Calatrava">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Rico Calatrava</h5>
+            <p class="card-text text-muted">Backend Developer</p>
+            <div>
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="card border-0 shadow-sm h-100">
+          <img src="{% static 'images/team3.jpg' %}" class="image-photo hover-zoom" data-bs-toggle="modal" data-bs-target="#team3Modal" alt="Rina Doydora">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Rina Doydora</h5>
+            <p class="card-text text-muted">UI/UX Designer</p>
+            <div>
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-3 mb-4" data-aos="zoom-in" data-aos-delay="400">
+        <div class="card border-0 shadow-sm h-100">
+          <img src="{% static 'images/team4.jpg' %}" class="image-photo hover-zoom" data-bs-toggle="modal" data-bs-target="#team4Modal" alt="Edmar Genargue">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">Edmar Genargue</h5>
+            <p class="card-text text-muted">QA & Documentation</p>
+            <div>
+              <a href="#" class="text-primary me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-info me-2"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="text-danger"><i class="bi bi-envelope-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="500">
       <p class="text-muted small">
-        Developed by Information Systems students of Santos College — a practical project that transforms HR tasks into a smart solution.
+        Developed by BS Information Systems students of Danao Technological College  Santos College — a practical project that transforms HR tasks into a smart solution.
       </p>
     </div>
   </div>
 </section>
+
+<!-- Modal Example for Alfred -->
+<div class="modal fade" id="team1Modal" tabindex="-1" aria-labelledby="team1ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="team1ModalLabel">Alfred Orapa - Team Leader</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Alfred is the visionary behind the project. He coordinated timelines, set goals, and guided the entire team with focus and determination.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Duplicate modals for each member with their respective IDs and content -->
+<div class="modal fade" id="team2Modal" tabindex="-1" aria-labelledby="team2ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="team2ModalLabel">Rico Calatrava - Backend Developer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Rico is the backbone of the system, ensuring robust functionality and seamless integration of features. His expertise in backend development is crucial to the project's success.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="team3Modal" tabindex="-1" aria-labelledby="team3ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="team3ModalLabel">Rina Doydora - UI/UX Designer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Rina crafted the user interface, ensuring a smooth and intuitive experience for all users. Her design skills bring the system to life visually.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="team4Modal" tabindex="-1" aria-labelledby="team4ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="team4ModalLabel">Edmar Genargue - QA & Documentation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Edmar ensures the quality and documentation of the project, meticulously testing features and creating comprehensive guides for users.
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

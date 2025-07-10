@@ -58,7 +58,10 @@ ROOT_URLCONF = 'finalProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'finalProject', 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'finalProject', 'templates'),
+            os.path.join(BASE_DIR, 'staffApp', 'templates'),
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +143,11 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'orapaalfred7@gmail.com'
 EMAIL_HOST_PASSWORD = 'nepo fqml nihe lqst'
+
+# for admin simpleui icon 
+SIMPLEUI_LOGO = '/static/images/santoscollege.png'
+SIMPLEUI_HOME_INFO = False
+
+SIMPLEUI_CONFIG = {
+    'menu_url': '/simpleui/menu/', # wala pa ni gana
+}

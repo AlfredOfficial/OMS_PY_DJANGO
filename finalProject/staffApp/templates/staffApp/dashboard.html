@@ -35,6 +35,12 @@
                             <i class="bi bi-clock-history me-2 text-success"></i> Attendance
                         </a>
                     </li>
+                    <li class="nav-item mb-1">
+                        <!-- Leave Modal Trigger -->
+                        <a class="nav-link text-dark d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#leaveModal" href="#">
+                            <i class="bi bi-calendar-plus me-2 text-warning"></i> Request Leave
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Logout -->
@@ -159,4 +165,9 @@
         </div>
     </div>
 </div>
+
+<!-- Leave Request Modal -->
+{% include 'staffApp/leave_form.html' %}
+
+
 {% endblock %}

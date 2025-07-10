@@ -19,9 +19,10 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from staffApp.views import simpleui_menu # wala pa ni gana
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('simpleui/menu/', simpleui_menu), # same here 
     path('', views.home, name = 'home'),
     path('home/', views.home, name = 'home'),
     path('about/', views.about, name = 'about'),

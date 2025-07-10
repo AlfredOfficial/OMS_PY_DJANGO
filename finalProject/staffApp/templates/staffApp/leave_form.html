@@ -1,0 +1,45 @@
+<div class="modal fade" id="leaveModal" tabindex="-1" aria-labelledby="leaveModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="leaveModalLabel">
+                    <i class="bi bi-calendar-plus me-2"></i>Request Leave
+                    {% if pending_count > 0 %}
+                        <span class="badge bg-danger ms-2">{{ pending_count }} Pending</span> <!-- added badge for pending requests but now working pa ok -->
+                    {% endif %}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{% url 'submit_leave' %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {% if leave_form.non_field_errors %}
+                        <div class="alert alert-danger">{{ leave_form.non_field_errors }}</div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label for="id_leave_type" class="form-label">Leave Type</label>
+                        {{ leave_form.leave_type }}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="id_start_date" class="form-label">Start Date</label>
+                            {{ leave_form.start_date }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="id_end_date" class="form-label">End Date</label>
+                            {{ leave_form.end_date }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_reason" class="form-label">Reason</label>
+                        {{ leave_form.reason }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-warning">Submit Leave</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
